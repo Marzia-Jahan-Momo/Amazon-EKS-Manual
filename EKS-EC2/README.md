@@ -4,24 +4,24 @@
 
 ### Custom Policy through JSON Document named "node-group-autoscale-policy":
 ```json
-	{
-	  "Version": "2012-10-17", 
-	  "Statement":[ 
-		  { "Action": [ 
-				 "autoscaling: DescribeAutoScalingGroups",  
-				 "autoscaling: DescribeAutoScaling Instances", 
-				 "autoscaling: DescribeLaunchConfigurations",  
-				 "autoscaling: DescribeTags", 
-				 "autoscaling: SetDesired Capacity", 
-				 "autoscaling: TerminateInstanceInAutoScalingGroup", 
-				 "ec2: DescribeLaunchTemplateVersions"
-			  ],
-			  "Resource": "*",
-			  "Effect": "Allow" 
-		  }
-	   ]
-
-	}
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "autoscaling:DescribeAutoScalingGroups",
+        "autoscaling:DescribeAutoScalingInstances",
+        "autoscaling:DescribeLaunchConfigurations",
+        "autoscaling:DescribeTags",
+        "autoscaling:SetDesiredCapacity",
+        "autoscaling:TerminateInstanceInAutoScalingGroup",
+        "ec2:DescribeLaunchTemplateVersions"
+      ],
+      "Resource": "*",
+      "Effect": "Allow"
+    }
+  ]
+}
 ```
 
 
