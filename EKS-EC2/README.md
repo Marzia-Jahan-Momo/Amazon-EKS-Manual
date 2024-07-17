@@ -63,20 +63,20 @@ kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
-  replicas: 1        --- after create, edit: kubectl edit deployment nginx-deployment this with 20
+  replicas: 1        # after create, edit: kubectl edit deployment nginx-deployment this with 20
   selector:
-	matchLabels:
-	  app: nginx
+    matchLabels:
+      app: nginx
   template:
-	metadata:
-	  labels:
-		app: nginx
-	spec:
-	  containers:
-	  - name: nginx
-		image: nginx
-		ports:
-		- containerPort: 80
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
 
 ---
 apiVersion: v1
@@ -85,11 +85,11 @@ metadata:
   name: nginx-service
 spec:
   ports:
-	- port: 80
-	  targetPort: 80
-	  protocol: TCP
+  - port: 80
+    targetPort: 80
+    protocol: TCP
   selector:
-	app: nginx
+    app: nginx
   type: LoadBalancer
 ```
 
