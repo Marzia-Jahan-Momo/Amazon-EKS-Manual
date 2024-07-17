@@ -22,35 +22,38 @@
 	   ]
 
 	}
+```
 
 
-### Now attach to our previous created eks-node-group-role IAM role: search with "name node-group-autoscale-policy" and attach
+### Now attach to our previous created eks-node-group-role IAM role-> search with "name node-group-autoscale-policy" and attach 
 
 
-### Now deploy cluster autoscaler component in cmd:
-> kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml 
+## Deploy cluster autoscaler component in cmd:
+``` kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml ```
 
-> kubectl get deployment -n kube-system cluster-autoscaler
 
-> kubectl edit deployment -n kube-system cluster-autoscaler
+- kubectl get deployment -n kube-system cluster-autoscaler
 
- >> first added below the annotaions: deployment.kubernetes.io/revision: "1" below:
+- kubectl edit deployment -n kube-system cluster-autoscaler
+
+ **---**  first added below the annotaions: deployment.kubernetes.io/revision: "1" below:
 	add this line:
- 	cluster-autoscaler.kubernetes.io/safe-to-evict= "false"
 
+```cluster-autoscaler.kubernetes.io/safe-to-evict= "false"
 	edit <YOUR CLUSTER NAME> to your real cluster name
 
 	and change the cluster-autoscaler:v1.26.2 this version to your current cluster-autoscaler version 
+```
 
-	now save this yaml file
+-- now save this yaml file
 
-> kubectl get pods -n kube-system --------- here you will see cluster-autoscaler pod
-> kubectl get pods cluster-autoscaler-full-path -n kube-system -o wide
-> kubeclt logs -n kube-system cluster-autoscaler-full-path as logs.txt
+-  kubectl get pods -n kube-system --------- here you will see cluster-autoscaler pod
+- kubectl get pods cluster-autoscaler-full-path -n kube-system -o wide
+- kubeclt logs -n kube-system cluster-autoscaler-full-path as logs.txt
 
 
 
-> For checking the autoscaling is working or not first create nging deployment with 1 replica which has 1 node after that add 20 replica which has maximum size 3 node.
+**---** For checking the autoscaling is working or not first create nging deployment with 1 replica which has 1 node after that add 20 replica which has maximum size 3 node.
 Nginx yaml file with deployment and service:
 
 ### nginx-deployment.yaml:
@@ -88,14 +91,14 @@ Nginx yaml file with deployment and service:
 	  selector:
 		app: nginx
   type: LoadBalancer
+```
 
 
 
+- kubectl get pod
 
-> kubectl get pod
+- kubectl get svc 
 
-> kubectl get svc 
+- kubeclt logs -n kube-system cluster-autoscaler-full-path -f
 
-> kubeclt logs -n kube-system cluster-autoscaler-full-path -f
-
-> kubectl get nodes
+- kubectl get nodes
